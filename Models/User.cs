@@ -8,19 +8,18 @@ namespace Travflix.Models
         [Key]
         public int UserId { get; set; }
 
-        [Required]
-        [EmailAddress(ErrorMessage = "Invalid email address.")]
+        
+        //[EmailAddress(ErrorMessage = "Invalid email address.")]
         public string Email { get; set; }
 
-        [Column(TypeName = "nvarchar[20]")]
+        //[Column(TypeName = "nvarchar[20]")]
         public string FirstName { get; set; }
 
-        [Column(TypeName = "nvarchar[25]")]
+        //[Column(TypeName = "char[25]")]
         public string LastName { get; set; }
 
-        [DataType(DataType.Date)]
         public DateTime? DateOfBirth { get; set; }
-        public byte[] PasswordHash { get; set; }
-        public byte[] PasswordSalt { get; set; }
+        public byte[] passwordhash { get; set; }
+        public byte[] passwordsalt { get; set; }
     }
 }

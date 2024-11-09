@@ -32,7 +32,7 @@ namespace Travflix.Migrations
 
                     b.Property<string>("ActorName")
                         .IsRequired()
-                        .HasColumnType("nvarchar[45]");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ActorPhoto")
                         .IsRequired()
@@ -51,15 +51,9 @@ namespace Travflix.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("MovieId"));
 
-                    b.Property<int>("ActorId")
-                        .HasColumnType("int");
-
                     b.Property<string>("Icon")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("ProducerId")
-                        .HasColumnType("int");
 
                     b.Property<DateTime>("ReleaseDate")
                         .HasColumnType("datetime2");
@@ -69,10 +63,6 @@ namespace Travflix.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("MovieId");
-
-                    b.HasIndex("ActorId");
-
-                    b.HasIndex("ProducerId");
 
                     b.ToTable("Movies");
                 });
@@ -115,42 +105,23 @@ namespace Travflix.Migrations
 
                     b.Property<string>("FirstName")
                         .IsRequired()
-                        .HasColumnType("nvarchar[20]");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("LastName")
                         .IsRequired()
-                        .HasColumnType("nvarchar[25]");
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<byte[]>("PasswordHash")
+                    b.Property<byte[]>("passwordhash")
                         .IsRequired()
                         .HasColumnType("varbinary(max)");
 
-                    b.Property<byte[]>("PasswordSalt")
+                    b.Property<byte[]>("passwordsalt")
                         .IsRequired()
                         .HasColumnType("varbinary(max)");
 
                     b.HasKey("UserId");
 
                     b.ToTable("Users");
-                });
-
-            modelBuilder.Entity("Travflix.Models.AddMovie", b =>
-                {
-                    b.HasOne("Travflix.Models.Actor", "Actor")
-                        .WithMany()
-                        .HasForeignKey("ActorId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Travflix.Models.Producer", "Producer")
-                        .WithMany()
-                        .HasForeignKey("ProducerId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Actor");
-
-                    b.Navigation("Producer");
                 });
 #pragma warning restore 612, 618
         }

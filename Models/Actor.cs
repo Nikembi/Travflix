@@ -8,10 +8,9 @@ namespace Travflix.Models
         [Key]
         public int ActorId { get; set; }
 
-        [Required]
-        [DataType(DataType.ImageUrl)]
+        //[DataType(DataType.ImageUrl)]
         public string ActorPhoto { get; set; }
-        [Column(TypeName ="nvarchar[45]")]
+        //[Column(TypeName ="nvarchar[45]")]
         public string ActorName { get; set; }
     }
 }
